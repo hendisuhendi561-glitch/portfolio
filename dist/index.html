@@ -1,0 +1,93 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Personal branding landing page"><title>Your Name - Personal Brand</title><script type="module" src="/_astro/index.astro_astro_type_script_index_0_lang.DyH8HZto.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="/_astro/index.CEGT7gZP.css"></head> <body> <script>
+        const fadeElements = document.querySelectorAll('.fade-in');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        fadeElements.forEach(el => observer.observe(el));
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        let isDarkMode = false;
+
+        darkModeToggle.addEventListener('click', () => {
+            isDarkMode = !isDarkMode;
+            body.classList.toggle('dark-mode');
+            const icon = darkModeToggle.querySelector('i');
+            icon.className = isDarkMode ? 'ph ph-sun' : 'ph ph-moon';
+            localStorage.setItem('darkMode', isDarkMode);
+        });
+
+        if (localStorage.getItem('darkMode') === 'true') {
+            body.classList.add('dark-mode');
+            darkModeToggle.querySelector('i').className = 'ph ph-sun';
+            isDarkMode = true;
+        }
+
+        const langToggle = document.getElementById('langToggle');
+        let currentLang = 'en';
+
+        langToggle.addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'id' : 'en';
+            langToggle.textContent = currentLang === 'en' ? 'ID' : 'EN';
+
+            document.querySelectorAll('[data-en][data-id]').forEach(el => {
+                el.textContent = el.getAttribute(`data-${currentLang}`);
+            });
+            localStorage.setItem('language', currentLang);
+        });
+
+        if (localStorage.getItem('language') === 'id') {
+            currentLang = 'id';
+            langToggle.textContent = 'EN';
+            document.querySelectorAll('[data-en][data-id]').forEach(el => {
+                el.textContent = el.getAttribute('data-id');
+            });
+        }
+
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>  <header> <div class="container"> <nav> <a href="#" class="logo"> <div class="logo-icon"> <i class="ph ph-lightning"></i> </div>
+Your Brand
+</a> <div class="nav-center"> <ul class="nav-links"> <li><a href="#about" data-en="About" data-id="Tentang">About</a></li> <li><a href="#skills" data-en="Services" data-id="Layanan">Services</a></li> <li><a href="#contact" data-en="Contact" data-id="Kontak">Contact</a></li> </ul> </div> <div class="nav-actions"> <button class="lang-btn" id="langToggle">ID</button> <button class="icon-btn" id="darkModeToggle"> <i class="ph ph-moon"></i> </button> </div> </nav> </div> </header> <section class="hero"> <div class="hero-bg"> <div class="hero-grid"></div> <div class="hero-line"></div> <div class="hero-line"></div> <div class="hero-line"></div> <div class="hero-line"></div> </div> <div class="container"> <div class="hero-content"> <div class="hero-badge"> <i class="ph ph-sparkle"></i> <span data-en="Available for new projects" data-id="Tersedia untuk proyek baru">Available for new projects</span> </div> <h1 data-en="Building digital experiences that matter" data-id="Membangun pengalaman digital yang bermakna">Building digital experiences that matter</h1> <p data-en="I'm a creative professional dedicated to crafting impactful solutions that drive real results. Let's create something amazing together." data-id="Saya seorang profesional kreatif yang berdedikasi untuk menciptakan solusi berdampak yang menghasilkan hasil nyata. Mari ciptakan sesuatu yang luar biasa bersama.">I'm a creative professional dedicated to crafting impactful solutions that drive real results. Let's create something amazing together.</p> <div class="hero-buttons"> <a href="#contact" class="btn btn-primary"> <i class="ph ph-envelope-simple"></i> <span data-en="Get in Touch" data-id="Hubungi Saya">Get in Touch</span> </a> <a href="#about" class="btn btn-secondary"> <i class="ph ph-user"></i> <span data-en="Learn More" data-id="Pelajari Lebih Lanjut">Learn More</span> </a> </div> </div> </div> </section> <section class="about" id="about"> <div class="container"> <div class="section-header fade-in"> <div class="section-badge"> <i class="ph ph-info"></i> <span data-en="About Me" data-id="Tentang Saya">About Me</span> </div> <h2 data-en="Passionate about creating impact" data-id="Bergairah dalam menciptakan dampak">Passionate about creating impact</h2> <p data-en="Combining creativity with strategic thinking to deliver exceptional results" data-id="Menggabungkan kreativitas dengan pemikiran strategis untuk memberikan hasil luar biasa">Combining creativity with strategic thinking to deliver exceptional results</p> </div> <div class="about-grid"> <div class="about-image fade-in"> <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=500&fit=crop&crop=face" alt="Your Name"> </div> <div class="about-content fade-in"> <h3 data-en="Hi, I'm Your Name" data-id="Halo, saya Nama Anda">Hi, I'm Your Name</h3> <p data-en="I'm a passionate professional dedicated to delivering exceptional results. With years of experience in my field, I specialize in creating impactful solutions that drive real results." data-id="Saya seorang profesional yang berdedikasi untuk memberikan hasil luar biasa. Dengan pengalaman bertahun-tahun di bidang saya, saya berspesialisasi dalam menciptakan solusi berdampak yang menghasilkan hasil nyata.">I'm a passionate professional dedicated to delivering exceptional results. With years of experience in my field, I specialize in creating impactful solutions that drive real results.</p> <p data-en="My approach combines creativity with strategic thinking, ensuring every project I work on is both innovative and effective. I believe in building lasting relationships and delivering value beyond expectations." data-id="Pendekatan saya menggabungkan kreativitas dengan pemikiran strategis, memastikan setiap proyek yang saya kerjakan inovatif dan efektif. Saya percaya dalam membangun hubungan jangka panjang dan memberikan nilai melampaui ekspektasi.">My approach combines creativity with strategic thinking, ensuring every project I work on is both innovative and effective. I believe in building lasting relationships and delivering value beyond expectations.</p> <p data-en="When I'm not working, you can find me exploring new technologies, reading, or spending time outdoors—activities that keep my creativity flowing." data-id="Ketika saya tidak bekerja, Anda bisa menemukan saya mengeksplor teknologi baru, membaca, atau menghabiskan waktu di luar ruangan—aktivitas yang membuat kreativitas saya mengalir.">When I'm not working, you can find me exploring new technologies, reading, or spending time outdoors—activities that keep my creativity flowing.</p> <div style="display: flex; gap: 1rem; margin-top: 2rem;"> <a href="#contact" class="btn btn-primary"> <i class="ph ph-chat-circle-text"></i> <span data-en="Let's Talk" data-id="Mari Berbicara">Let's Talk</span> </a> </div> </div> </div> </div> </section> <section class="skills" id="skills"> <div class="container"> <div class="section-header fade-in"> <div class="section-badge"> <i class="ph ph-lightning"></i> <span data-en="Services" data-id="Layanan">Services</span> </div> <h2 data-en="What I bring to the table" data-id="Yang saya tawarkan">What I bring to the table</h2> <p data-en="A comprehensive set of skills to help you achieve your goals" data-id="Serangkaian keterampilan lengkap untuk membantu Anda mencapai tujuan Anda">A comprehensive set of skills to help you achieve your goals</p> </div> <div class="bento-grid"> <div class="bento-card large fade-in"> <div class="bento-icon"> <i class="ph ph-lightbulb"></i> </div> <h3 data-en="Strategy & Planning" data-id="Strategi & Perencanaan">Strategy & Planning</h3> <p data-en="Developing comprehensive strategies that align with your goals and deliver measurable results. From concept to execution, I ensure every step is purposeful and effective." data-id="Mengembangkan strategi komprehensif yang selaras dengan tujuan Anda dan memberikan hasil terukur. Dari konsep hingga eksekusi, saya memastikan setiap langkah bermakna dan efektif.">Developing comprehensive strategies that align with your goals and deliver measurable results. From concept to execution, I ensure every step is purposeful and effective.</p> </div> <div class="bento-card fade-in"> <div class="bento-icon"> <i class="ph ph-paint-brush"></i> </div> <h3 data-en="Design" data-id="Desain">Design</h3> <p data-en="Creating visually stunning designs that communicate your message effectively and resonate with your audience." data-id="Menciptakan desain yang memukau secara visual yang mengkomunikasikan pesan Anda secara efektif dan beresonansi dengan audiens Anda.">Creating visually stunning designs that communicate your message effectively and resonate with your audience.</p> </div> <div class="bento-card fade-in"> <div class="bento-icon"> <i class="ph ph-code"></i> </div> <h3 data-en="Development" data-id="Pengembangan">Development</h3> <p data-en="Building robust solutions using the latest technologies and best practices for optimal performance." data-id="Membangun solusi yang kuat menggunakan teknologi terbaru dan praktik terbaik untuk performa optimal.">Building robust solutions using the latest technologies and best practices for optimal performance.</p> </div> <div class="bento-card large fade-in"> <div class="bento-icon"> <i class="ph ph-chart-line-up"></i> </div> <h3 data-en="Data Analysis" data-id="Analisis Data">Data Analysis</h3> <p data-en="Analyzing data to gain insights and make informed decisions that drive success. Transforming complex data into actionable strategies." data-id="Menganalisis data untuk mendapatkan wawasan dan membuat keputusan terinformasi yang mendorong kesuksesan. Mengubah data kompleks menjadi strategi yang dapat ditindaklanjuti.">Analyzing data to gain insights and make informed decisions that drive success. Transforming complex data into actionable strategies.</p> </div> <div class="bento-card fade-in"> <div class="bento-icon"> <i class="ph ph-rocket"></i> </div> <h3 data-en="Growth" data-id="Pertumbuhan">Growth</h3> <p data-en="Scaling your business with proven strategies that deliver sustainable growth and long-term success." data-id="Menskalakan bisnis Anda dengan strategi terbukti yang memberikan pertumbuhan berkelanjutan dan kesuksesan jangka panjang.">Scaling your business with proven strategies that deliver sustainable growth and long-term success.</p> </div> </div> </div> </section> <section class="contact" id="contact"> <div class="container"> <div class="section-header"> <div class="section-badge"> <i class="ph ph-paper-plane-tilt"></i> <span data-en="Contact" data-id="Kontak">Contact</span> </div> <h2 data-en="Let's create something amazing" data-id="Mari ciptakan sesuatu yang luar biasa">Let's create something amazing</h2> <p data-en="I'm always open to discussing new projects, creative ideas, or opportunities" data-id="Saya selalu terbuka untuk mendiskusikan proyek baru, ide kreatif, atau peluang">I'm always open to discussing new projects, creative ideas, or opportunities</p> </div> <div class="contact-links"> <a href="mailto:your.email@example.com" class="contact-link"> <i class="ph ph-envelope-simple"></i> <span data-en="Email Me" data-id="Email Saya">Email Me</span> </a> <a href="https://linkedin.com/in/yourprofile" class="contact-link"> <i class="ph ph-linkedin-logo"></i>
+LinkedIn
+</a> <a href="https://twitter.com/yourhandle" class="contact-link"> <i class="ph ph-twitter-logo"></i>
+Twitter
+</a> <a href="https://github.com/yourusername" class="contact-link"> <i class="ph ph-github-logo"></i>
+GitHub
+</a> </div> </div> </section> <footer> <div class="container"> <p data-en="© 2024 Your Name. Crafted with passion." data-id="© 2024 Nama Anda. Dibuat dengan penuh semangat.">&copy; 2024 Your Name. Crafted with passion.</p> </div> </footer> <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Scroll to top"> <i class="ph ph-arrow-up"></i> </button> </body></html>
